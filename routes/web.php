@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return view('index');
+    $posts = Post::all();
+    return view('index', ['posts' => $posts]);
 });
 
 // User routes

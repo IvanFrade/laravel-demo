@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body style="display: flex; flex-direction: column; gap: 20px;">
     @auth
     <p>You are logged in</p>
     <form action="/logout" method="POST">
@@ -21,6 +21,15 @@
             <textarea name="body" placeholder="Body content"></textarea>
             <button>Save post</button>
         </form>
+    </div>
+    <div style="border: 3px solid black;">
+        <h2>All Posts</h2>
+        @foreach($posts as $post)
+        <div style="background-color: gray; padding: 10px; margin: 10px;">
+            <h3>{{$post['title']}}</h3>
+            {{$post['body']}}
+        </div>
+        @endforeach
     </div>
 
     @else
