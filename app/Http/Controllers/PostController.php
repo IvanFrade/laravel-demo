@@ -21,7 +21,29 @@ class PostController extends Controller
         return redirect('/');
     }
 
+    public function updatePost(Post $post, Request $request) {
+        if (auth()->user()->id != $post->user_id) {
+            return redirect('/');
+        }
+
+        $data = $request->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        $data['title'] = strip_tags($data['title']);
+        $data['body'] = strip_tags($data['body']);
+
+        $post->update($data);
+        
+        return redirect('/');
+    }
+
     public function showEditScreen(Post $post) {
+        if (auth()->user()->id != $post->user_id) {
+            return redirect('/');
+        }
+
         return view('edit-post', ['post' => $post]);
     }
 }
