@@ -6,7 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    $posts = Post::all();
+    $posts = Post::where('user_id', auth()->id())->get();
     return view('index', ['posts' => $posts]);
 });
 
