@@ -22,7 +22,8 @@ class PostController extends Controller
     }
 
     public function updatePost(Post $post, Request $request) {
-        if (auth()->user()->id != $post->user_id) {
+        // TODO: clear
+        if (auth()->user()->id !== $post->user_id) {
             return redirect('/');
         }
 
@@ -40,10 +41,20 @@ class PostController extends Controller
     }
 
     public function showEditScreen(Post $post) {
-        if (auth()->user()->id != $post->user_id) {
+        if (auth()->user()->id !== $post->user_id) {
             return redirect('/');
         }
 
         return view('edit-post', ['post' => $post]);
+    }
+
+    public function deletePost(Post $post) {
+        if (auth()->user()->id != $post->user_id) {
+            return redirect('/');
+        }
+
+        $post->delete();
+
+        return redirect('/');
     }
 }
