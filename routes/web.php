@@ -10,7 +10,7 @@ Route::get('/', function () {
     if (auth()->check()) {
         $posts = auth()->user()->userPosts()->latest()->get();
     }
-    
+
     return view('index', ['posts' => $posts]);
 });
 
@@ -21,3 +21,4 @@ Route::post('/logout', [UserController::class, 'logout']);
 
 // Post routes
 Route::post('/create-post', [PostController::class, 'createPost']);
+Route::get('/edit-post/{post}', [PostController::class, 'showEditScreen']);

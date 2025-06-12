@@ -20,4 +20,8 @@ class PostController extends Controller
         Post::create($data);
         return redirect('/');
     }
+
+    public function showEditScreen(Post $post) {
+        return view('edit-post', ['post' => $post]);
+    }
 }
