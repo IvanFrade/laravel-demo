@@ -10,12 +10,13 @@ class UserController extends Controller
 {
     public function register(Request $request) {
         $data = $request->validate([
-            'name' => ['required', 'min:4', 'max:16', Rule::unique('users', 'name')], 
+            'username' => ['required', 'min:4', 'max:16'], 
             'email' => ['required', 'email'], 
             'password' => ['required', 'min:8', 'max:64']
         ]);
 
         $data['password'] = bcrypt($data['password']);
+        $data['isAdmin'] = 0;
         $user = User::create($data);
         auth()->login($user);
 
@@ -24,11 +25,11 @@ class UserController extends Controller
 
     public function login(Request $request) {
         $data = $request->validate([
-            'login-name' => 'required',
+            'login-username' => 'required',
             'login-psw' => 'required'
         ]);
 
-        if (auth()->attempt(['name' => $data['login-name'], 'password' => $data['login-psw']])) {
+        if (auth()->attempt(['username' => $data['login-username'], 'password' => $data['login-psw']])) {
             $request->session()->regenerate();
         }
 
