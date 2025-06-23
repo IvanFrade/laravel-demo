@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Copy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CopyController extends Controller
 {
@@ -24,5 +25,17 @@ class CopyController extends Controller
         Copy::create($data);
         
         return redirect('/');
+    }
+
+    public static function getCopies() {
+        $copies = DB::select('SELECT * FROM copies INNER JOIN books WHERE copies.book_id = books.id');
+
+        return $copies;
+    }
+
+    public static function getAvailableCopies() {
+        $availableCopies = DB::select('SELECT * FROM copies INNER JOIN books WHERE copies.available = 1 AND copies.book_id = books.id');
+
+        return $availableCopies;
     }
 }

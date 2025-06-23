@@ -27,6 +27,15 @@ Route::get('/', function () {
     return view('index', ['posts' => $posts, 'books' => $books, 'genres' => $genres]);
 });
 
+Route::get('/home', function () {
+    $availableCopies =  [];
+    if (auth()->check()) {
+        $availableCopies = CopyController::getAvailableCopies();
+    }
+
+    return view('home', ['availableCopies' => $availableCopies]);
+});
+
 // User routes
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
