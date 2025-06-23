@@ -19,6 +19,7 @@ class GenreController extends Controller
         
 
         Genre::create($data);
+        
         return redirect('/');
     }
 
