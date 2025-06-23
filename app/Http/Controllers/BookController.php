@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function createBook(Request $request) {
+    public function addBook(Request $request) {
         $data = $request->validate([
+            'isbn' => 'required|unique:books',
             'title' => 'required|unique:books',
             'author' => 'required',
             'publisher' => 'nullable',
