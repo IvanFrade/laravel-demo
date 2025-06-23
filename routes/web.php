@@ -3,6 +3,7 @@
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CopyController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
@@ -13,12 +14,17 @@ Route::get('/', function () {
         $posts = auth()->user()->userPosts()->latest()->get();
     }
 
+    $books = [];
+    if (auth()->check()) {
+        $books = BookController::getBooks();
+    }
+
     $genres = [];
     if (auth()->check()) {
         $genres = GenreController::getGenres();
     }
 
-    return view('index', ['posts' => $posts], ['genres' => $genres]);
+    return view('index', ['posts' => $posts, 'books' => $books, 'genres' => $genres]);
 });
 
 // User routes
@@ -37,3 +43,6 @@ Route::post('/add-genre', [GenreController::class, 'addGenre']);
 
 // Book routes
 Route::post('/add-book', [BookController::class, 'addBook']);
+
+// Copy routes
+Route::post('/add-copy', [CopyController::class, 'addCopy']);

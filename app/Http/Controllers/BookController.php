@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
@@ -28,9 +29,13 @@ class BookController extends Controller
         $data['description'] = strip_tags($data['description']);
         $data['user_id'] = auth()->id();
 
-        Log::info($data);
-
         Book::create($data);
         return redirect('/');
+    }
+
+    public static function getBooks() {
+        $books = Book::get();
+
+        return $books;
     }
 }
