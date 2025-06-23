@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
@@ -15,9 +18,9 @@ class BookController extends Controller
             'year' => 'nullable',
             'description' => 'nullable',
             'genre_id' => 'required',
-            'user_id' => 'required',
         ]);
-
+        
+        $data['isbn'] = strip_tags($data['isbn']);
         $data['title'] = strip_tags($data['title']);
         $data['author'] = strip_tags($data['author']);
         $data['publisher'] = strip_tags($data['publisher']);
@@ -25,7 +28,9 @@ class BookController extends Controller
         $data['description'] = strip_tags($data['description']);
         $data['user_id'] = auth()->id();
 
-        Genre::create($data);
+        Log::info($data);
+
+        Book::create($data);
         return redirect('/');
     }
 }

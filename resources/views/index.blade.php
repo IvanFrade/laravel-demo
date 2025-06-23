@@ -8,10 +8,6 @@
 <body style="display: flex; flex-direction: column; gap: 20px;">
     @auth
     <p>Sei loggato</p>
-    <form action="/logout" method="POST">
-        @csrf
-        <button>Log out</button>
-    </form>
 
     <div style="border: 3px solid black;">
         <h2>Create a new post</h2>
@@ -40,12 +36,12 @@
             <input type="text" name="isbn" placeholder="Codice ISBN">
             <input type="text" name="title" placeholder="Titolo">
             <input type="text" name="author" placeholder="Autore">
-            <input type="text" name="title" placeholder="Titolo">
+            <input type="text" name="publisher" placeholder="Editore">
             <input type="text" name="year" placeholder="Anno">
             <textarea name="description" placeholder="Descrizione"></textarea>
-            <select name="genre">
+            <select name="genre_id">
                 @foreach($genres as $genre)
-                <option value="{{$genre->name}}">{{$genre->name}}</option>
+                <option value="{{$genre->id}}">{{$genre->name}}</option>
                 @endforeach
             </select>
             <button>Aggiungi</button>
@@ -67,6 +63,21 @@
         </div>
         @endforeach
     </div>
+
+    <form action="/logout" method="POST">
+        @csrf
+        <button>Log out</button>
+    </form>
+
+    <form action="/logout" method="POST">
+        @csrf
+        <button>Log out</button>
+    </form>
+
+    <form action="/logout" method="POST">
+        @csrf
+        <button>Log out</button>
+    </form>
 
     @else
     <div style="border: 3px solid black; padding: 12px;">
