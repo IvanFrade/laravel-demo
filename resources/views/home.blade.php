@@ -23,6 +23,7 @@
                 <th>{{ $copy->year }}</th>
                 <th>{{ $copy->condition }}</th>
                 <th>{{ $copy->available }}</th>
+                <th><button>Prenota</button></th>
             </tr>
             @endforeach
         </table>

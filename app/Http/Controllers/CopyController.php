@@ -28,13 +28,21 @@ class CopyController extends Controller
     }
 
     public static function getCopies() {
-        $copies = DB::select('SELECT * FROM copies INNER JOIN books WHERE copies.book_id = books.id');
+        $copies = DB::select('SELECT * 
+                                FROM copies INNER JOIN books 
+                                WHERE copies.book_id = books.id 
+                                ORDER BY books.title');
 
         return $copies;
     }
 
     public static function getAvailableCopies() {
-        $availableCopies = DB::select('SELECT * FROM copies INNER JOIN books WHERE copies.available = 1 AND copies.book_id = books.id');
+        $availableCopies = DB::select('SELECT * 
+                                        FROM copies 
+                                        INNER JOIN books 
+                                        WHERE copies.available = 1 
+                                        AND copies.book_id = books.id
+                                        ORDER BY books.title, copies.condition DESC');
 
         return $availableCopies;
     }
