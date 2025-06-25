@@ -21,4 +21,16 @@ class LoanController extends Controller
 
         return redirect('/home');
     }
+
+    public function stopLoan(Request $request, $copy_id) {
+        DB::table('copies')
+            ->where('id', $copy_id)
+            ->update(['available' => 1]);
+
+        DB::table('loans')
+            ->where('copy_id', $copy_id)
+            ->update(['returned_at' => now()]);
+
+        return redirect('/home');
+    }
 }

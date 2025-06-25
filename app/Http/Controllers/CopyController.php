@@ -43,13 +43,34 @@ class CopyController extends Controller
                                               books.author,
                                               books.year,
                                               copies.condition,
-                                              copies. available 
+                                              copies.available 
                                         FROM copies 
                                         INNER JOIN books 
+                                        ON copies.book_id = books.id
                                         WHERE copies.available = 1 
-                                        AND copies.book_id = books.id
                                         ORDER BY books.title, copies.condition DESC');
 
         return $availableCopies;
+    }
+
+    public static function getUserCurrentLoans() {
+        $currentlyLoadedCopies = DB::select('SELECT copies.id AS copyId,
+                                                    books.id AS bookId,
+                                                    books.title,
+                                                    books.author,
+                                                    books.year,
+                                                    copies.condition,
+                                                    loans.borrowed_at
+                                            FROM copies 
+                                            INNER JOIN books 
+                                            ON copies.book_id = books.id
+                                            INNER JOIN loans
+                                            ON loans.copy_id = copies.id
+                                            WHERE loans.user_id = ?
+                                            AND loans.returned_at IS NULL
+                                            ORDER BY books.title, copies.condition DESC', 
+                                            [auth()->id()]);
+
+        return $currentlyLoadedCopies;
     }
 }

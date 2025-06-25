@@ -34,7 +34,12 @@ Route::get('/home', function () {
         $availableCopies = CopyController::getAvailableCopies();
     }
 
-    return view('home', ['availableCopies' => $availableCopies]);
+    $currentlyLoanedCopies =  [];
+    if (auth()->check()) {
+        $currentlyLoanedCopies = CopyController::getUserCurrentLoans();
+    }
+
+    return view('home', ['availableCopies' => $availableCopies, 'currentlyLoanedCopies' => $currentlyLoanedCopies]);
 });
 
 // User routes
@@ -59,3 +64,4 @@ Route::post('/add-copy', [CopyController::class, 'addCopy']);
 
 // Loan routes
 Route::post('/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
+Route::post('/stop-loan/{copy_id}', [LoanController::class, 'stopLoan']);
