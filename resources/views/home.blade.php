@@ -12,6 +12,11 @@
     @if(auth()->user()->isAdmin)
     <a href="">Vai alla dashboard</a>
     @endif
+    
+    <form action="/logout" method="POST">
+        @csrf
+        <button>Log out</button>
+    </form>
 
     <div>
         <h2>Prestiti in corso</h2>
