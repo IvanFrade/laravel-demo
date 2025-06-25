@@ -37,7 +37,13 @@ class CopyController extends Controller
     }
 
     public static function getAvailableCopies() {
-        $availableCopies = DB::select('SELECT * 
+        $availableCopies = DB::select('SELECT copies.id AS copyId,
+                                              books.id AS bookId,
+                                              books.title,
+                                              books.author,
+                                              books.year,
+                                              copies.condition,
+                                              copies. available 
                                         FROM copies 
                                         INNER JOIN books 
                                         WHERE copies.available = 1 

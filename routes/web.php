@@ -4,6 +4,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CopyController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
@@ -55,3 +56,6 @@ Route::post('/add-book', [BookController::class, 'addBook']);
 
 // Copy routes
 Route::post('/add-copy', [CopyController::class, 'addCopy']);
+
+// Loan routes
+Route::post('/start-loan/{copy_id}', [LoanController::class, 'startLoan']);

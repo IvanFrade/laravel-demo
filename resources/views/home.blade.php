@@ -23,7 +23,12 @@
                 <th>{{ $copy->year }}</th>
                 <th>{{ $copy->condition }}</th>
                 <th>{{ $copy->available }}</th>
-                <th><button>Prenota</button></th>
+                <th>
+                    <form action="/start-loan/{{ $copy->copyId }}" method="POST">
+                        @csrf
+                        <button>Prenota</button>
+                    </form>
+                </th>
             </tr>
             @endforeach
         </table>
