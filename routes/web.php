@@ -9,25 +9,12 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 
+// Index has login and registration forms
 Route::get('/', function () {
-    $posts = [];
-    if (auth()->check()) {
-        $posts = auth()->user()->userPosts()->latest()->get();
-    }
-
-    $books = [];
-    if (auth()->check()) {
-        $books = BookController::getBooks();
-    }
-
-    $genres = [];
-    if (auth()->check()) {
-        $genres = GenreController::getGenres();
-    }
-
-    return view('index', ['posts' => $posts, 'books' => $books, 'genres' => $genres]);
+    return view('index');
 });
 
+// Home view for standard users
 Route::get('/home', function () {
     $availableCopies =  [];
     if (auth()->check()) {
@@ -40,6 +27,20 @@ Route::get('/home', function () {
     }
 
     return view('home', ['availableCopies' => $availableCopies, 'currentlyLoanedCopies' => $currentlyLoanedCopies]);
+});
+
+Route::get('/dashboard', function() {  
+    $books = [];
+    if (auth()->check()) {
+        $books = BookController::getBooks();
+    }
+
+    $genres = [];
+    if (auth()->check()) {
+        $genres = GenreController::getGenres();
+    }
+
+    return view('dashboard', ['books' => $books, 'genres' => $genres]);
 });
 
 // User routes

@@ -10,9 +10,9 @@
     <h1>Benvenuto {{ auth()->user()->username }}!</h1>
 
     @if(auth()->user()->isAdmin)
-    <a href="">Vai alla dashboard</a>
+    <a href="/dashboard">Vai alla dashboard</a>
     @endif
-    
+
     <form action="/logout" method="POST">
         @csrf
         <button>Log out</button>
