@@ -7,8 +7,20 @@
     <title>Home</title>
 </head>
 <body>
+    <h1>Benvenuto {{ auth()->user()->username }}!</h1>
+
+    @if(auth()->user()->isAdmin)
+    <a href="">Vai alla dashboard</a>
+    @endif
+
     <div>
         <h2>Prestiti in corso</h2>
+
+        {{-- Check wether any loans are ongoing for current user --}}
+        @if(!$currentlyLoanedCopies)
+        <h4>Nessun prestito in corso!</h4>
+
+        @else
         <table>
             <tr>
                 <th>Titolo</th>
@@ -33,9 +45,16 @@
             </tr>
             @endforeach
         </table>
+        @endif
     </div>
     <div>
         <h2>Copie prenotabili</h2>
+
+        {{-- Check wether any copies are available to borrow --}}
+        @if(!$availableCopies)
+        <h4>Nessuna copia disponibile per il prestito!</h4>
+
+        @else
         <table>
             <tr>
                 <th>Titolo</th>
@@ -60,6 +79,7 @@
             </tr>
             @endforeach
         </table>
+        @endif
     </div>
 </body>
 </html>
