@@ -15,9 +15,9 @@ class LoanController extends Controller
 
         Loan::create($data);
 
-        $copy = DB::table('copies')
-                ->where('id', $copy_id)
-                ->update(['available' => 0]);
+        DB::table('copies')
+            ->where('id', $copy_id)
+            ->update(['available' => 0]);
 
         return redirect('/home');
     }
@@ -32,5 +32,48 @@ class LoanController extends Controller
             ->update(['returned_at' => now()]);
 
         return redirect('/home');
+    }
+
+    public static function getUserOngoingLoans() {
+        $data = DB::select('SELECT copies.id AS copyId,
+                                                    books.id AS bookId,
+                                                    books.title,
+                                                    books.author,
+                                                    books.year,
+                                                    copies.condition,
+                                                    loans.borrowed_at
+                                            FROM copies 
+                                            INNER JOIN books 
+                                            ON copies.book_id = books.id
+                                            INNER JOIN loans
+                                            ON loans.copy_id = copies.id
+                                            WHERE loans.user_id = ?
+                                            AND loans.returned_at IS NULL
+                                            ORDER BY books.title, copies.condition DESC', 
+                                            [auth()->id()]);
+
+        return $data;
+    }
+
+    public static function getAllOngoingLoans() {
+        $data = DB::select('SELECT copies.id AS copyId,
+                            books.id AS bookId,
+                            users.username,
+                            books.title,
+                            books.author,
+                            books.year,
+                            copies.condition,
+                            loans.borrowed_at
+                            FROM copies 
+                            INNER JOIN books 
+                            ON copies.book_id = books.id
+                            INNER JOIN loans
+                            ON loans.copy_id = copies.id
+                            INNER JOIN users
+                            ON loans.user_id = users.id
+                            WHERE loans.returned_at IS NULL
+                            ORDER BY books.title, copies.condition DESC');
+
+        return $data;
     }
 }

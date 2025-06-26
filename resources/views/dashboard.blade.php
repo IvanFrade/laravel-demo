@@ -7,6 +7,8 @@
 </head>
 <body style="display: flex; flex-direction: column; gap: 20px;">
     <h1>Admin dashboard</h1>
+   
+    <a href="{{ route('list', 'books') }}"><button>Vai alle liste</button></a>
 
     <div style="border: 3px solid black;">
         <h2>Aggiungi un genere</h2>

@@ -19,11 +19,11 @@ class CopyFactory extends Factory
         return [
             'book_id' => fake()->numberBetween(1, 22),
             'condition' => array_rand(array_flip([
-                'good',
-                'mid',
-                'bad',
+                'ottima',
+                'buona',
+                'accettabile',
             ]), 1),
-            'available'=> fake()->numberBetween(0, 1),
+            'available'=> 1,
             'notes' => fake()->text(50),
         ];
     }

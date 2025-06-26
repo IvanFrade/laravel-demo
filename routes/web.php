@@ -1,11 +1,13 @@
 <?php
 
-use App\Models\Post;
+use App\Models\Book;
+use App\Models\Copy;
+use App\Models\Loan;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CopyController;
-use App\Http\Controllers\LoanController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoanController;    
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 
@@ -23,7 +25,7 @@ Route::get('/home', function () {
 
     $currentlyLoanedCopies =  [];
     if (auth()->check()) {
-        $currentlyLoanedCopies = CopyController::getUserCurrentLoans();
+        $currentlyLoanedCopies = LoanController::getUserOngoingLoans();
     }
 
     return view('home', ['availableCopies' => $availableCopies, 'currentlyLoanedCopies' => $currentlyLoanedCopies]);
@@ -42,6 +44,28 @@ Route::get('/dashboard', function() {
 
     return view('dashboard', ['books' => $books, 'genres' => $genres]);
 });
+
+Route::get('/dashboard/list/{table}', function($table) {
+    switch($table) {
+        case 'books':
+            $data = Book::all();
+            break;
+        case 'copies':
+            $data = CopyController::getCopies();
+            break;
+        case 'loans':
+            $data = LoanController::getAllOngoingLoans();
+            break;
+        case 'users':
+            $data = User::all();
+            break;
+        default:
+            abort(404);
+    }
+
+    return view('dashboard_list', compact('data', 'table'));
+})->name('list');
+Route::redirect('/dashboard', '/dashboard/list/loans');
 
 // User routes
 Route::post('/register', [UserController::class, 'register']);
