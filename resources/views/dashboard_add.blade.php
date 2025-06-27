@@ -1,8 +1,19 @@
 <x-layout>
-    
+
     <x-admin-header />
 
-    @if($el === 'book')
+    @if($el === 'genre')
+    <div style="border: 3px solid black;">
+        <h2>Aggiungi un genere</h2>
+        <form action="/add-genre" method="POST">
+            @csrf
+            <input type="text" name="name" placeholder="Genere">
+            <textarea name="description" placeholder="Descrizione"></textarea>
+            <button>Aggiungi</button>
+        </form>
+    </div>
+
+    @elseif($el === 'book')
     <div style="border: 3px solid black;">
         <h2>Aggiungi un libro</h2>
         <form action="/add-book" method="POST">

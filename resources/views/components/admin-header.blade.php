@@ -6,7 +6,8 @@
             <a href="{{ route('list', 'books') }}"><button>Libri</button></a>
             <a href="{{ route('list', 'copies') }}"><button>Copie</button></a>
             <a href="{{ route('list', 'loans') }}"><button>Prenotazioni</button></a>
-            <a href="{{ route('list', 'users') }}"><button>Utenti</button></a>   
+            <a href="{{ route('list', 'users') }}"><button>Utenti</button></a>
+            <a href="{{ route('add', 'genre') }}"><button>Aggiungi genere</button></a>     
             <a href="{{ route('add', 'book') }}"><button>Aggiungi libro</button></a>  
             <a href="{{ route('add', 'copy') }}"><button>Aggiungi copia</button></a>   
         </nav>

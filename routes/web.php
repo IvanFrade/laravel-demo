@@ -68,6 +68,9 @@ Route::get('/dashboard/list/{table}', function($table) {
 
 Route::get('/dashboard/add/{el}', function($el) {
     switch($el) {
+        case 'genre':
+            $data = [];
+            break;
         case 'book':
             $data = GenreController::getGenres();
             break;
