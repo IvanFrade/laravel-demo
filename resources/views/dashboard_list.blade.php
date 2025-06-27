@@ -105,7 +105,26 @@
         @endif
 
     @elseif($table === 'users')
+        <h2>Utenti registrati</h2>
 
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Admin</th>
+                <th>Data creazione</th>
+            </tr>
+            @foreach($data as $user)
+            <tr>
+                <th>{{ $user->id }}</th>              
+                <th>{{ $user->username }}</th>       
+                <th>{{ $user->email }}</th>
+                <th>{{ $user->isAdmin ? "Si" : "No" }}</th>
+                <th>{{ \Carbon\Carbon::parse($user->created_at)->locale('it')->translatedFormat('d F Y') }}</th>
+            </tr>
+            @endforeach
+        </table>
     @endif
 
     <form action="/home" method="GET">
