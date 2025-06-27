@@ -7,11 +7,6 @@
     <title>Biblioteca</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <h1>Biblioteca</h1>
-        </nav>
-    </header>
     <main class="container">
         {{ $slot }}
     </main>

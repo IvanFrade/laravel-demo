@@ -1,18 +1,8 @@
 <x-layout>
-    <h1>Admin dashboard</h1>
-   
-    <a href="{{ route('list', 'books') }}"><button>Vai alle liste</button></a>
+    
+    <x-admin-header />
 
-    <div style="border: 3px solid black;">
-        <h2>Aggiungi un genere</h2>
-        <form action="/add-genre" method="POST">
-            @csrf
-            <input type="text" name="name" placeholder="Genere">
-            <textarea name="description" placeholder="Descrizione"></textarea>
-            <button>Aggiungi</button>
-        </form>
-    </div>
-
+    @if($el === 'book')
     <div style="border: 3px solid black;">
         <h2>Aggiungi un libro</h2>
         <form action="/add-book" method="POST">
@@ -24,7 +14,7 @@
             <input type="text" name="year" placeholder="Anno">
             <textarea name="description" placeholder="Descrizione"></textarea>
             <select name="genre_id">
-                @foreach($genres as $genre)
+                @foreach($data as $genre)
                     <option value="{{$genre->id}}">{{$genre->name}}</option>
                 @endforeach
             </select>
@@ -32,12 +22,13 @@
         </form>
     </div>
 
+    @elseif($el === 'copy')
     <div style="border: 3px solid black;">
         <h2>Aggiungi una copia</h2>
         <form action="/add-copy" method="POST">
             @csrf
             <select name="book_id">
-                @foreach($books as $book)
+                @foreach($data as $book)
                     <option value="{{$book->id}}">{{$book->author}} - {{$book->title}}</option>
                 @endforeach
             </select>
@@ -54,14 +45,5 @@
             <button>Aggiungi</button>
         </form>
     </div>
-
-    <form action="/home" method="GET">
-        @csrf
-        <button>Torna alla home</button>
-    </form>
-
-    <form action="/logout" method="POST">
-        @csrf
-        <button>Log out</button>
-    </form>
+    @endif
 </x-layout>

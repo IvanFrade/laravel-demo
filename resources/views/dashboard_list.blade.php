@@ -1,12 +1,6 @@
 <x-layout>
-    <h1>Admin dashboard</h1>
-
-    <div style="display: flex;">
-        <a href="{{ route('list', 'books') }}"><button>Libri</button></a>
-        <a href="{{ route('list', 'copies') }}"><button>Copie</button></a>
-        <a href="{{ route('list', 'loans') }}"><button>Prenotazioni</button></a>
-        <a href="{{ route('list', 'users') }}"><button>Utenti</button></a>   
-    </div>
+    
+    <x-admin-header />
 
     @if($table === 'books')
         <h2>Libri censiti</h2>
@@ -127,13 +121,5 @@
         </table>
     @endif
 
-    <form action="/home" method="GET">
-        @csrf
-        <button>Torna alla home</button>
-    </form>
 
-    <form action="/logout" method="POST">
-        @csrf
-        <button>Log out</button>
-    </form>
 </x-layout>

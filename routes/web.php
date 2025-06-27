@@ -65,6 +65,23 @@ Route::get('/dashboard/list/{table}', function($table) {
 
     return view('dashboard_list', compact('data', 'table'));
 })->name('list');
+
+Route::get('/dashboard/add/{el}', function($el) {
+    switch($el) {
+        case 'book':
+            $data = GenreController::getGenres();
+            break;
+        case 'copy':
+            $data = BookController::getBooks();
+            break;
+        default:
+            abort(404);
+    }
+
+    return view('dashboard_add', compact('data', 'el'));
+})->name('add');
+
+// Default view for dashboard is list of loans
 Route::redirect('/dashboard', '/dashboard/list/loans');
 
 // User routes
