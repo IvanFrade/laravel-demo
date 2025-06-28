@@ -97,7 +97,7 @@ Route::redirect('/dashboard', '/dashboard/list/loans');
 // User routes
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 // Genre routes
 Route::post('/add-genre', [GenreController::class, 'addGenre']);

@@ -34,7 +34,7 @@
         <div class="flex items-center gap-4">
             <div class="sm:flex sm:gap-4">
                 <form class="block rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-indigo-800" 
-                action="/logout" method="POST">
+                action={{ route('logout') }} method="POST">
                     @csrf 
                     <button>Log out</button>
                 </form>
