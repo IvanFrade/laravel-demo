@@ -1,7 +1,7 @@
 <x-layout>
     <x-user-header />
     
-    <main class="flex flex-col h-screen bg-indigo-900 justify-center items-center">
+    <main>
         @if($view === 'books')
         <x-available-copies-list :data="$data" />
         @endif
