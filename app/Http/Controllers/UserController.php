@@ -25,11 +25,11 @@ class UserController extends Controller
 
     public function login(Request $request) {
         $data = $request->validate([
-            'login-username' => 'required',
-            'login-psw' => 'required'
+            'username' => 'required',
+            'password' => 'required'
         ]);
 
-        if (auth()->attempt(['username' => $data['login-username'], 'password' => $data['login-psw']])) {
+        if (auth()->attempt(['username' => $data['username'], 'password' => $data['password']])) {
             $request->session()->regenerate();
         }
 

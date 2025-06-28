@@ -23,7 +23,7 @@
             @endif
 
             <form action="/logout" method="POST">
-                @csrf
+                @csrf 
                 <button>Log out</button>
             </form>
         </nav>
