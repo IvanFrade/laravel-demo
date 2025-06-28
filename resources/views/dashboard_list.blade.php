@@ -21,12 +21,12 @@
             </tr>
             @foreach($data as $book)
             <tr>
-                <th>{{ $book->isbn }}</th>              
-                <th>{{ $book->title }}</th>       
-                <th>{{ $book->author }}</th>
-                <th>{{ $book->publisher }}</th>
-                <th>{{ $book->year }}</th>
-                <th>{{ $book->description }}</th>
+                <td>{{ $book->isbn }}</td>              
+                <td>{{ $book->title }}</td>       
+                <td>{{ $book->author }}</td>
+                <td>{{ $book->publisher }}</td>
+                <td>{{ $book->year }}</td>
+                <td>{{ $book->description }}</td>
             </tr>
             @endforeach
         </table>
@@ -53,14 +53,14 @@
             </tr>
             @foreach($data as $copy)
             <tr>
-                <th>{{ $copy->copyId }}</th>  
-                <th>{{ $copy->isbn }}</th>              
-                <th>{{ $copy->title }}</th>       
-                <th>{{ $copy->author }}</th>
-                <th>{{ $copy->publisher }}</th>
-                <th>{{ $copy->year }}</th>
-                <th>{{ $copy->condition }}</th>
-                <th>{{ $copy->available ? 'Si' : 'No' }}</th>
+                <td>{{ $copy->copyId }}</td>  
+                <td>{{ $copy->isbn }}</td>              
+                <td>{{ $copy->title }}</td>       
+                <td>{{ $copy->author }}</td>
+                <td>{{ $copy->publisher }}</td>
+                <td>{{ $copy->year }}</td>
+                <td>{{ $copy->condition }}</td>
+                <td>{{ $copy->available ? 'Disponibile' : 'Prenotata' }}</td>
             </tr>
             @endforeach
         </table>
@@ -86,13 +86,13 @@
             </tr>
             @foreach($data as $copy)
             <tr>
-                <th>{{ $copy->copyId    }}</th>              
-                <th>{{ $copy->username }}</th>       
-                <th>{{ $copy->title }}</th>
-                <th>{{ $copy->author }}</th>
-                <th>{{ $copy->year }}</th>
-                <th>{{ $copy->condition }}</th>
-                <th>{{ \Carbon\Carbon::parse($copy->borrowed_at)->locale('it')->translatedFormat('d F Y') }}</th>
+                <td>{{ $copy->copyId    }}</td>              
+                <td>{{ $copy->username }}</td>       
+                <td>{{ $copy->title }}</td>
+                <td>{{ $copy->author }}</td>
+                <td>{{ $copy->year }}</td>
+                <td>{{ $copy->condition }}</td>
+                <td>{{ \Carbon\Carbon::parse($copy->borrowed_at)->locale('it')->translatedFormat('d F Y') }}</td>
             </tr>
             @endforeach
         </table>
@@ -111,11 +111,11 @@
             </tr>
             @foreach($data as $user)
             <tr>
-                <th>{{ $user->id }}</th>              
-                <th>{{ $user->username }}</th>       
-                <th>{{ $user->email }}</th>
-                <th>{{ $user->isAdmin ? "Si" : "No" }}</th>
-                <th>{{ \Carbon\Carbon::parse($user->created_at)->locale('it')->translatedFormat('d F Y') }}</th>
+                <td>{{ $user->id }}</td>              
+                <td>{{ $user->username }}</td>       
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->isAdmin ? "Si" : "No" }}</td>
+                <td>{{ \Carbon\Carbon::parse($user->created_at)->locale('it')->translatedFormat('d F Y') }}</td>
             </tr>
             @endforeach
         </table>

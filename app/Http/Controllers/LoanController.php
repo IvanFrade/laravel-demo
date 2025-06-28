@@ -19,7 +19,7 @@ class LoanController extends Controller
             ->where('id', $copy_id)
             ->update(['available' => 0]);
 
-        return redirect('/home');
+        return redirect('/home/books');
     }
 
     public function stopLoan(Request $request, $copy_id) {
@@ -31,7 +31,7 @@ class LoanController extends Controller
             ->where('copy_id', $copy_id)
             ->update(['returned_at' => now()]);
 
-        return redirect('/home');
+        return redirect('/home/loans');
     }
 
     public static function getUserOngoingLoans() {

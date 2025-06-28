@@ -31,19 +31,26 @@ Route::get('/home', function () {
     return view('home', ['availableCopies' => $availableCopies, 'currentlyLoanedCopies' => $currentlyLoanedCopies]);
 });
 
-Route::get('/dashboard', function() {  
-    $books = [];
-    if (auth()->check()) {
-        $books = BookController::getBooks();
+Route::get('/home/{view}', function($view) {
+    
+    switch($view) {
+        case 'books':
+            $data = CopyController::getAvailableCopies();
+            break;
+        case 'loans':
+            $data = LoanController::getUserOngoingLoans();
+            break;
+        case 'profile':
+            $data = [];
+            break;
+        default:
+            abort(404);
     }
-
-    $genres = [];
-    if (auth()->check()) {
-        $genres = GenreController::getGenres();
-    }
-
-    return view('dashboard', ['books' => $books, 'genres' => $genres]);
+    return view('home', compact('data', 'view'));
 });
+
+// Default view for users is book catalogue
+Route::redirect('/home', '/home/books');
 
 Route::get('/dashboard/list/{table}', function($table) {
     switch($table) {
@@ -92,12 +99,6 @@ Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
-// Post routes
-Route::post('/create-post', [PostController::class, 'createPost']);
-Route::get('/edit-post/{post}', [PostController::class, 'showEditScreen']);
-Route::put('/edit-post/{post}', [PostController::class, 'updatePost']);
-Route::delete('/delete-post/{post}', [PostController::class, 'deletePost']);
-
 // Genre routes
 Route::post('/add-genre', [GenreController::class, 'addGenre']);
 
@@ -109,4 +110,4 @@ Route::post('/add-copy', [CopyController::class, 'addCopy']);
 
 // Loan routes
 Route::post('/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
-Route::post('/stop-loan/{copy_id}', [LoanController::class, 'stopLoan']);
+Route::post('/home/stop-loan/{copy_id}', [LoanController::class, 'stopLoan']);
