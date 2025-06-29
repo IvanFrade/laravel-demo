@@ -10,9 +10,9 @@ class UserController extends Controller
 {
     public function register(Request $request) {
         $data = $request->validate([
-            'username' => ['required', 'min:4', 'max:16'], 
-            'email' => ['required', 'email'], 
-            'password' => ['required', 'min:8', 'max:64']
+            'username' => ['required', 'min:4', 'max:16', 'unique:users,username'], 
+            'email' => ['required', 'email', 'unique:users,email'], 
+            'password' => ['required', 'min:8', 'max:64', 'confirmed']
         ]);
 
         $data['password'] = bcrypt($data['password']);
@@ -31,9 +31,13 @@ class UserController extends Controller
 
         if (auth()->attempt(['username' => $data['username'], 'password' => $data['password']])) {
             $request->session()->regenerate();
+            return redirect('/home');
         }
+        else
+            return back()->withErrors([
+                'login' => "Credenziali non corrette"
+            ])->withInput();
 
-        return redirect('/home');
     }
 
     public function logout() {

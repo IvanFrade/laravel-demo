@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 class CopyController extends Controller
 {
     public function addCopy(Request $request) {
+        // ID is a (10 digit) random barcode
+        // Get a random 10 digit int to use as id later
         do {
             $id = random_int(1000000000, 9999999999);
         } while (\App\Models\Loan::where('id', $id)->exists());
