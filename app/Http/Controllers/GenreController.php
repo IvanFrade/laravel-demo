@@ -20,7 +20,7 @@ class GenreController extends Controller
 
         Genre::create($data);
         
-        return redirect('/');
+        return redirect('/dashboard/add/genre');
     }
 
     public static function getGenres() {

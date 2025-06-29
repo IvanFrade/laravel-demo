@@ -10,6 +10,7 @@ class Copy extends Model
     use HasFactory;
     
     protected $fillable = [
+        'id',
         'book_id',
         'condition',
         'available',

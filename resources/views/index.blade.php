@@ -22,15 +22,12 @@
                 </label>
                 
                 <label for="password-confirm">
-                    <span class="text-sm font-medium text-gray-700"> Confirm password </span>
+                    <span class="text-sm font-medium text-gray-700"> Conferma password </span>
                     <input type="password" name="password-confirm" placeholder="" 
                     class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm px-2 py-2" />
                 </label>
 
-                <button 
-                class="inline-block rounded-sm border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 hover:cursor-pointer focus:ring-3 focus:outline-hidden mt-2">
-                Registrati
-                </button>
+                <x-main-button>Registrati</x-main-button>
             </form>
         </div>
 
@@ -49,10 +46,8 @@
                     class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm px-2 py-2" />
                 </label>
                 
-                <button 
-                class="inline-block rounded-sm border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 hover:cursor-pointer focus:ring-3 focus:outline-hidden mt-2">
-                Login
-                </button>
+                
+                <x-main-button>Login</x-main-button>
             </form>
         </div>
     </main>

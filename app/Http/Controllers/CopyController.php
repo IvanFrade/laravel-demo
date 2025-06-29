@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 class CopyController extends Controller
 {
     public function addCopy(Request $request) {
+        do {
+            $id = random_int(1000000000, 9999999999);
+        } while (\App\Models\Loan::where('id', $id)->exists());
+        
         $data = $request->validate([
             'book_id' => 'required',
             'condition' => 'required',
@@ -16,6 +20,7 @@ class CopyController extends Controller
             'notes' => 'nullable',
         ]);
 
+        $data['id'] = $id;
         $data['book_id'] = strip_tags($data['book_id']);
         $data['condition'] = strip_tags($data['condition']);
         $data['available'] = strip_tags($data['available']);
@@ -24,7 +29,7 @@ class CopyController extends Controller
 
         Copy::create($data);
         
-        return redirect('/');
+        return redirect('/dashboard/add/copy');
     }
 
     public static function getCopies() {

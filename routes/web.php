@@ -100,7 +100,7 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
 // Genre routes
-Route::post('/add-genre', [GenreController::class, 'addGenre']);
+Route::post('/dashboard/add-genre', [GenreController::class, 'addGenre']);
 
 // Book routes
 Route::post('/add-book', [BookController::class, 'addBook']);
