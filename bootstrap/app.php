@@ -11,7 +11,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Redirect guests to index
+        $middleware->redirectGuestsTo('/');
+        
+        // Redirect users to home screen
+        $middleware->redirectUsersTo('/home/books');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

@@ -12,22 +12,22 @@
         <nav aria-label="Global" class="hidden md:block">
             <ul class="flex items-center gap-6 text-sm">
                 <li>
-                    <a class="text-gray-500 transition hover:text-gray-500/75" href="/home/books">Catalogo</a>
+                    <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('home', 'books') }}">Catalogo</a>
                 </li>
                 
                 <li>
-                    <a class="text-gray-500 transition hover:text-gray-500/75" href="/home/loans">I miei prestiti</a>
+                    <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('home', 'loans') }}">I miei prestiti</a>
                 </li>
 
                 <li>
-                    <a class="text-gray-500 transition hover:text-gray-500/75" href="/home/profile">Il mio profilo</a>
+                    <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('home', 'profile') }}">Il mio profilo</a>
                 </li>
 
-                @if(auth()->user()->isAdmin)
+                @can('edit')
                 <li>
-                    <a class="text-gray-500 transition hover:text-gray-500/75" href="/dashboard">Vai alla dashboard</a>
+                    <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('dashboard', 'list-loans') }}">Vai alla dashboard</a>
                 </li>
-                @endif
+                @endcan
             </ul>
         </nav>
 

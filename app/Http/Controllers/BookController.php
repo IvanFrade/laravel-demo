@@ -30,7 +30,7 @@ class BookController extends Controller
         $data['user_id'] = auth()->id();
 
         Book::create($data);
-        return redirect('/dashboard/add/book');
+        return redirect('/dashboard/add-book');
     }
 
     public static function getBooks() {
