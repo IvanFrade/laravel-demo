@@ -53,8 +53,6 @@ Route::middleware('auth')->group(function() {
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
 
-
-
 // Admin routes (checks if logged in and if current user has 'edit' permission)
 Route::middleware(['auth', 'can:edit'])->group(function() {
 

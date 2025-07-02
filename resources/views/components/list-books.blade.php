@@ -1,12 +1,12 @@
 @props(['data' => null])
 
-<h2 class="text-center text-indigo-600 font-bold text-3xl py-4">Libri censiti</h2>
+<h2 class="text-center text-gray-300 font-bold text-3xl py-4">Libri censiti</h2>
 
 @if(!$data)
-<h4 class="text-center text-indigo-600 font-bold text-2xl py-4">Nessun libro nel sistema!</h4>
+<h4 class="text-center text-gray-300 font-bold text-2xl py-4">Nessun libro nel sistema!</h4>
 
 @else
-<div class=" wrap-anywhere overflow-x-auto overflow-y-auto rounded border border-gray-300 shadow-sm m-5 md:max-h-[80vh]">
+<div class=" wrap-anywhere overflow-x-auto overflow-y-auto rounded border border-gray-300 shadow-sm m-5 md:max-h-[80vh] bg-gray-200">
     <table class="min-w-full divide-y-2 divide-gray-200 table-fixed text-center">
         <thead class="ltr:text-left rtl:text-right">
             <tr class="*:font-medium *:text-gray-900 text-center">
