@@ -3,7 +3,7 @@
 <div class="rounded-md border border-gray-300 p-4 shadow-sm sm:p-6 m-2 w-xl bg-white">
     <h2 class="text-center text-indigo-600 font-bold text-xl py-4">Aggiungi una copia </h2>
 
-    <form action="/add-copy" method="POST">
+    <form action="/dashboard/add-copy" method="POST">
         @csrf
         <div class="mb-2">
             <label for="book_id">

@@ -12,27 +12,27 @@
             <nav aria-label="Global" class="hidden md:block">
                 <ul class="flex items-center gap-6 text-sm">
                     <li>
-                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('list', 'books') }}">Libri</a>
+                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('dashboard', 'list-books') }}">Libri</a>
                     </li>
                     <li>
-                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('list', 'copies') }}">Copie</a>
+                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('dashboard', 'list-copies') }}">Copie</a>
                     </li>
                     <li>
-                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('list', 'loans') }}">Prenotazioni</a>
+                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('dashboard', 'list-loans') }}">Prenotazioni</a>
                     </li>
                     <li>
-                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('list', 'users') }}">Utenti</a>
+                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('dashboard', 'list-users') }}">Utenti</a>
                     </li>
                     <li>
-                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('add', 'genre') }}">Aggiungi genere</a>
+                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('dashboard', 'add-genre') }}">Aggiungi genere</a>
                     </li>
                     <li>
-                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('add', 'book') }}">Aggiungi libro</a>
+                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('dashboard', 'add-book') }}">Aggiungi libro</a>
                     </li>
                     <li>
-                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('add', 'copy') }}">Aggiungi copia</a>
+                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('dashboard', 'add-copy') }}">Aggiungi copia</a>
                     </li><li>
-                        <a class="text-gray-500 transition hover:text-gray-500/75" href="/home">Torna alla home</a>
+                        <a class="text-gray-500 transition hover:text-gray-500/75" href="{{ route('home', 'books') }}">Torna alla home</a>
                     </li>
                 </ul>
             </nav>

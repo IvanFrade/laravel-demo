@@ -31,7 +31,7 @@ class CopyController extends Controller
 
         Copy::create($data);
         
-        return redirect('/dashboard/add/copy');
+        return redirect('/dashboard/add-copy');
     }
 
     public static function getCopies() {

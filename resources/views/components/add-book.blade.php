@@ -3,7 +3,7 @@
 <div class="rounded-md border border-gray-300 p-4 shadow-sm sm:p-6 m-2 w-xl bg-white">
     <h2 class="text-center text-indigo-600 font-bold text-xl py-4">Aggiungi un libro </h2>
 
-    <form action="/add-book" method="POST">
+    <form action="/dashboard/add-book" method="POST">
         @csrf
         <label for="isbn">
             <span class="text-sm font-medium text-gray-700">Codice ISBN</span>

@@ -32,52 +32,43 @@ Route::get('/home/{view}', function($view) {
     }
 
     return view('home', compact('data', 'view'));
-})->middleware('auth');
+})->middleware('auth')->name('home');
 
 // Default view for users is book catalogue
 Route::redirect('/home', '/home/books');
 
-Route::get('/dashboard/list/{table}', function($table) {
-    switch($table) {
-        case 'books':
+Route::get('/dashboard/{el}', function($el) {
+    switch($el) {
+        case 'add-genre':
+            $data = [];
+            break;
+        case 'add-book':
+            $data = GenreController::getGenres();
+            break;
+        case 'add-copy':
+            $data = BookController::getBooks();
+            break;
+        case 'list-books':
             $data = Book::all();
             break;
-        case 'copies':
+        case 'list-copies':
             $data = CopyController::getCopies();
             break;
-        case 'loans':
+        case 'list-loans':
             $data = LoanController::getAllOngoingLoans();
             break;
-        case 'users':
+        case 'list-users':
             $data = User::all();
             break;
         default:
             abort(404);
     }
 
-    return view('dashboard_list', compact('data', 'table'));
-})->middleware('auth')->name('list');
+    return view('dashboard', compact('data', 'el'));
+})->middleware('auth')->name('dashboard');
 
-Route::get('/dashboard/add/{el}', function($el) {
-    switch($el) {
-        case 'genre':
-            $data = [];
-            break;
-        case 'book':
-            $data = GenreController::getGenres();
-            break;
-        case 'copy':
-            $data = BookController::getBooks();
-            break;
-        default:
-            abort(404);
-    }
-
-    return view('dashboard_add', compact('data', 'el'));
-})->middleware('auth')->name('add');
-
-// Default view for dashboard is list of loans
-Route::redirect('/dashboard', '/dashboard/list/loans');
+// Default view for admin dashboard is loans listing
+Route::redirect('/dashboard', '/dashboard/list-loans');
 
 // User routes
 Route::post('/register', [UserController::class, 'register'])->name('register');
@@ -88,10 +79,10 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::post('/dashboard/add-genre', [GenreController::class, 'addGenre']);
 
 // Book routes
-Route::post('/add-book', [BookController::class, 'addBook']);
+Route::post('/dashboard/add-book', [BookController::class, 'addBook']);
 
 // Copy routes
-Route::post('/add-copy', [CopyController::class, 'addCopy']);
+Route::post('/dashboard/add-copy', [CopyController::class, 'addCopy']);
 
 // Loan routes
 Route::post('/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
