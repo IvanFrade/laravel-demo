@@ -11,12 +11,20 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 
-// Index has login and registration forms
+// Index page with login and registration forms
 Route::get('/', function () {
     return view('index');
 })->middleware('guest');
 
-Route::get('/home/{view}', function($view) {
+// User routes
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+
+// User routes only check for login status
+Route::middleware('auth')->group(function() {
+
+    // Users home route
+    Route::get('/home/{view}', function($view) {
     switch($view) {
         case 'books':
             $data = CopyController::getAvailableCopies();
@@ -29,17 +37,31 @@ Route::get('/home/{view}', function($view) {
             break;
         default:
             abort(404);
-    }
+        }
 
-    return view('home', compact('data', 'view'));
-})->middleware('auth')->name('home');
+        return view('home', compact('data', 'view'));
+    })->middleware('auth')->name('home');
 
-// Default view for users is book catalogue
-Route::redirect('/home', '/home/books');
+    // Default view for users is book catalogue
+    Route::redirect('/home', '/home/books');
 
-Route::get('/dashboard/{el}', function($el) {
-    switch($el) {
-        case 'add-genre':
+    // Loan routes
+    Route::post('/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
+    Route::post('/home/stop-loan/{copy_id}', [LoanController::class, 'stopLoan']);
+
+    // Logout needs user to be logged in (duh)
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+});
+
+
+
+// Admin routes (checks if logged in and if current user has 'edit' permission)
+Route::middleware(['auth', 'can:edit'])->group(function() {
+
+    // Admin dashboard
+    Route::get('/dashboard/{el}', function($el) {
+        switch($el) {
+            case 'add-genre':
             $data = [];
             break;
         case 'add-book':
@@ -62,28 +84,16 @@ Route::get('/dashboard/{el}', function($el) {
             break;
         default:
             abort(404);
-    }
+        }
 
-    return view('dashboard', compact('data', 'el'));
-})->middleware('auth')->name('dashboard');
+        return view('dashboard', compact('data', 'el'));
+    })->name('dashboard');
 
-// Default view for admin dashboard is loans listing
-Route::redirect('/dashboard', '/dashboard/list-loans');
+    // Default view for admin dashboard is loans listing
+    Route::redirect('/dashboard', '/dashboard/list-loans');
 
-// User routes
-Route::post('/register', [UserController::class, 'register'])->name('register');
-Route::post('/login', [UserController::class, 'login'])->name('login');
-Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-
-// Genre routes
-Route::post('/dashboard/add-genre', [GenreController::class, 'addGenre']);
-
-// Book routes
-Route::post('/dashboard/add-book', [BookController::class, 'addBook']);
-
-// Copy routes
-Route::post('/dashboard/add-copy', [CopyController::class, 'addCopy']);
-
-// Loan routes
-Route::post('/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
-Route::post('/home/stop-loan/{copy_id}', [LoanController::class, 'stopLoan']);
+    // Admin post routes
+    Route::post('/dashboard/add-genre', [GenreController::class, 'addGenre']);
+    Route::post('/dashboard/add-book', [BookController::class, 'addBook']);
+    Route::post('/dashboard/add-copy', [CopyController::class, 'addCopy']);
+});
