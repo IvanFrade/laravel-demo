@@ -22,7 +22,7 @@ class RoleSeeder extends Seeder
 
         $role->givePermissionTo($permission); 
 
-        $user = User::find(1);
+        $user = User::find(2);
         $user->assignRole('admin');
     }
 }

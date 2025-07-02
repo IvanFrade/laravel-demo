@@ -23,11 +23,11 @@
                     <a class="text-gray-500 transition hover:text-gray-500/75" href="/home/profile">Il mio profilo</a>
                 </li>
 
-                @if(auth()->user()->isAdmin)
+                @can('edit')
                 <li>
                     <a class="text-gray-500 transition hover:text-gray-500/75" href="/dashboard">Vai alla dashboard</a>
                 </li>
-                @endif
+                @endcan
             </ul>
         </nav>
 

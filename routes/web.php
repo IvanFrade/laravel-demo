@@ -14,7 +14,7 @@ use App\Http\Controllers\GenreController;
 // Index has login and registration forms
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('guest');
 
 Route::get('/home/{view}', function($view) {
     switch($view) {
