@@ -16,23 +16,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Home view for standard users
-Route::get('/home', function () {
-    $availableCopies =  [];
-    if (auth()->check()) {
-        $availableCopies = CopyController::getAvailableCopies();
-    }
-
-    $currentlyLoanedCopies =  [];
-    if (auth()->check()) {
-        $currentlyLoanedCopies = LoanController::getUserOngoingLoans();
-    }
-
-    return view('home', ['availableCopies' => $availableCopies, 'currentlyLoanedCopies' => $currentlyLoanedCopies]);
-});
-
 Route::get('/home/{view}', function($view) {
-    
     switch($view) {
         case 'books':
             $data = CopyController::getAvailableCopies();
@@ -46,8 +30,9 @@ Route::get('/home/{view}', function($view) {
         default:
             abort(404);
     }
+
     return view('home', compact('data', 'view'));
-});
+})->middleware('auth');
 
 // Default view for users is book catalogue
 Route::redirect('/home', '/home/books');
@@ -71,7 +56,7 @@ Route::get('/dashboard/list/{table}', function($table) {
     }
 
     return view('dashboard_list', compact('data', 'table'));
-})->name('list');
+})->middleware('auth')->name('list');
 
 Route::get('/dashboard/add/{el}', function($el) {
     switch($el) {
@@ -89,7 +74,7 @@ Route::get('/dashboard/add/{el}', function($el) {
     }
 
     return view('dashboard_add', compact('data', 'el'));
-})->name('add');
+})->middleware('auth')->name('add');
 
 // Default view for dashboard is list of loans
 Route::redirect('/dashboard', '/dashboard/list/loans');
