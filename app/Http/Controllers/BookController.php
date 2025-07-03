@@ -35,7 +35,7 @@ class BookController extends Controller
             $imageName = time().'_'.$image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
 
-            $data['cover_image'] = 'img/' + $imageName;
+            $data['cover_image'] = '/img/'.$imageName;
         }
         else {
             // If user doesn't upload file, sets default placeholder as cover
