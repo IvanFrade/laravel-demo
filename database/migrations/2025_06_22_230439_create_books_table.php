@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('publisher');
             $table->integer('year');
             $table->text('description');
+            $table->string('cover_image');
             $table->foreignId('genre_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

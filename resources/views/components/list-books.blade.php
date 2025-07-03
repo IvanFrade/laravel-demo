@@ -10,6 +10,7 @@
     <table class="min-w-full divide-y-2 divide-gray-200 table-fixed text-center">
         <thead class="ltr:text-left rtl:text-right">
             <tr class="*:font-medium *:text-gray-900 text-center">
+                <th class="px-3 py-2 whitespace-nowrap w-[20%]">Copertina</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[20%]">ISBN</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[20%]">Titolo</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[10%]">Autore</th>
@@ -22,6 +23,7 @@
         <tbody class="divide-y divide-gray-200">
             @foreach($data as $book)
             <tr class="*:text-gray-900 *:first:font-medium">
+                <td class="px-3 py-2 whitespace-nowrap"><img src="{{ $book->cover_image }}" alt="Copertina"></td>  
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->isbn }}</td>              
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->title }}</td>       
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->author }}</td>

@@ -23,9 +23,9 @@
                     class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm px-2 py-2" />
                 </label>
                 
-                <label for="password-confirmation">
+                <label for="password_confirmation">
                     <span class="text-sm font-medium text-gray-700"> Conferma password </span>
-                    <input type="password" name="password-confirmation" placeholder="" 
+                    <input type="password" name="password_confirmation" placeholder="" 
                     class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm px-2 py-2" />
                 </label>
 

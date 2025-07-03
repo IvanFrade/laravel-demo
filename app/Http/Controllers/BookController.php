@@ -17,6 +17,7 @@ class BookController extends Controller
             'author' => 'required',
             'publisher' => 'nullable',
             'year' => 'nullable',
+            'cover_image' => 'nullable',
             'description' => 'nullable',
             'genre_id' => 'required',
         ]);
@@ -28,6 +29,8 @@ class BookController extends Controller
         $data['year'] = strip_tags($data['year']);
         $data['description'] = strip_tags($data['description']);
         $data['user_id'] = auth()->id();
+        
+        $data['cover_image'] = '/img/default.png';
 
         Book::create($data);
         return redirect('/dashboard/add-book');
