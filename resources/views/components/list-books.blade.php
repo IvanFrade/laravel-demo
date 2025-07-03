@@ -23,7 +23,7 @@
         <tbody class="divide-y divide-gray-200">
             @foreach($data as $book)
             <tr class="*:text-gray-900 *:first:font-medium">
-                <td class="px-3 py-2 whitespace-nowrap"><img src="{{ $book->cover_image }}" alt="Copertina"></td>  
+                <td class="px-3 py-2 whitespace-nowrap"><img src="{{ $book->cover_image }}" alt="Copertina" class="w-16 h-auto"></td>  
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->isbn }}</td>              
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->title }}</td>       
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->author }}</td>
