@@ -27,7 +27,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/home/{view}', function($view) {
     switch($view) {
         case 'books':
-            //$data = CopyController::getAvailableCopies();
             $data = Book::all();
             break;
         case 'loans':
@@ -41,13 +40,20 @@ Route::middleware('auth')->group(function() {
         }
 
         return view('home', compact('data', 'view'));
-    })->middleware('auth')->name('home');
+    })->name('home');
+
+    // Book detail 
+    Route::get('/books/{book_id}', function($book_id) {
+        $book = Book::findOrFail($book_id);
+        $bestCopy = CopyController::getBestCopyByBookId($book_id);
+        return view('book-detail', compact('book', 'bestCopy'));
+    })->name('book-detail');
 
     // Default view for users is book catalogue
     Route::redirect('/home', '/home/books');
 
-    // Loan routes
-    Route::post('/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
+    // User post routes
+    Route::post('/home/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
     Route::post('/home/stop-loan/{copy_id}', [LoanController::class, 'stopLoan']);
 
     // Logout needs user to be logged in (duh)

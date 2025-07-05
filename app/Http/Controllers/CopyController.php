@@ -44,7 +44,7 @@ class CopyController extends Controller
         return $data;
     }
 
-    public static function getAvailableCopies() {
+    public static function getAvailableCopiesByBookId() {
         $data = DB::select('SELECT copies.id AS copyId,
                                               books.id AS bookId,
                                               books.title,
@@ -59,5 +59,22 @@ class CopyController extends Controller
                                         ORDER BY books.title, copies.condition DESC');
 
         return $data;
+    }
+
+    public static function getBestCopyByBookId($bookId) {
+        // Priority: ottima > buona > accettabile
+        $conditions = ['ottima', 'buona', 'accettabile'];
+        foreach ($conditions as $condition) {
+            $copy = DB::table('copies')
+                ->where('book_id', $bookId)
+                ->where('available', 1)
+                ->where('condition', $condition)
+                ->orderBy('id')
+                ->first();
+            if ($copy) {
+                return $copy;
+            }
+        }
+        return null;
     }
 }
