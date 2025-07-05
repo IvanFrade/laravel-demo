@@ -32,10 +32,9 @@
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->year }}</td>
                 <td class="px-3 py-2 whitespace-normal break-words">{{ $book->description }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">
-                    <form action="" method="POST" class="inline">
-                        @csrf
+                    <a href="{{ route('books.edit', $book->id) }}" class="inline">
                         <x-main-button>Modifica</x-main-button>
-                    </form>
+                    </a>
                 </td>
             </tr>
             @endforeach
