@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function() {
     Route::redirect('/home', '/home/books');
 
     // User post routes
-    Route::post('/home/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
+    Route::post('/start-loan/{copy_id}', [LoanController::class, 'startLoan']);
     Route::post('/home/stop-loan/{copy_id}', [LoanController::class, 'stopLoan']);
 
     // Logout needs user to be logged in (duh)
