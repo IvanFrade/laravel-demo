@@ -11,12 +11,13 @@
         <thead class="ltr:text-left rtl:text-right">
             <tr class="*:font-medium *:text-gray-900 text-center">
                 <th class="px-3 py-2 whitespace-nowrap w-[20%]">Copertina</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[20%]">ISBN</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[20%]">Titolo</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[10%]">ISBN</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[10%]">Titolo</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[10%]">Autore</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[10%]">Editore</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[10%]">Anno</th>
-                <th class="px-3 py-2 whitespace-normal break-words w-[30%]">Descrizione</th>
+                <th class="px-3 py-2 whitespace-normal break-words w-[20%]">Descrizione</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[10%]"></th>
             </tr>
         </thead>
 
@@ -30,6 +31,12 @@
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->publisher }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->year }}</td>
                 <td class="px-3 py-2 whitespace-normal break-words">{{ $book->description }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">
+                    <form action="" method="POST" class="inline">
+                        @csrf
+                        <x-main-button>Modifica</x-main-button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

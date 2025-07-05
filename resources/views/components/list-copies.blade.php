@@ -12,12 +12,13 @@
             <tr class="*:font-medium *:text-gray-900 text-center">
                 <th class="px-3 py-2 whitespace-nowrap w-[7%]">Barcode</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[7%]">ISBN</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[20%]">Titolo</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[20%]">Autore</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[15%]">Titolo</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[15%]">Autore</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[15%]">Editore</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[5%]">Anno</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[8%]">Condizione</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[8%]">Disponibile</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[10%]"></th>
             </tr>
         </thead>
         
@@ -32,6 +33,12 @@
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->year }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->condition }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->available ? 'Disponibile' : 'Prenotata' }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">
+                    <form action="" method="POST" class="inline">
+                        @csrf
+                        <x-main-button>Modifica</x-main-button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>
