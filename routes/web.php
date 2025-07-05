@@ -27,7 +27,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/home/{view}', function($view) {
     switch($view) {
         case 'books':
-            $data = CopyController::getAvailableCopies();
+            //$data = CopyController::getAvailableCopies();
+            $data = Book::all();
             break;
         case 'loans':
             $data = LoanController::getUserOngoingLoans();

@@ -3,7 +3,7 @@
     
     <main>
         @if($view === 'books')
-        <x-available-copies-list :data="$data" />
+        <x-books-gallery :data="$data" />
         @endif
 
         @if($view === 'loans')    
