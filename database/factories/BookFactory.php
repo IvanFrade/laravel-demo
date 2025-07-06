@@ -17,15 +17,14 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            'isbn' => fake()->randomNumber(5, true),
+            'isbn' => fake()->numberBetween(1000000000000, 9999999999999),
             'title' => fake()->word(),
             'author' => fake()->name(),
             'publisher' => fake()->word(),
             'year' => fake()->numberBetween(1800, 2025),
             'description' => fake()->text(),
             'cover_image' => '/public/img/default.png',
-            'genre_id' => fake()->numberBetween(1, 13),
-            'user_id' => fake()->numberBetween(1, 7),
+            'genre_id' => fake()->numberBetween(1, 5),
         ];
     }
 }

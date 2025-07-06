@@ -18,6 +18,5 @@ class Book extends Model
         'description',
         'cover_image',
         'genre_id',
-        'user_id',
     ];
 }

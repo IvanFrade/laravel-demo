@@ -28,7 +28,6 @@ class BookController extends Controller
         $data['publisher'] = strip_tags($data['publisher']);
         $data['year'] = strip_tags($data['year']);
         $data['description'] = strip_tags($data['description']);
-        $data['user_id'] = auth()->id();
 
         if($request->hasFile('cover_image')) {
             $image = $request->file('cover_image');

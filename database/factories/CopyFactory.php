@@ -17,7 +17,7 @@ class CopyFactory extends Factory
     public function definition(): array
     {
         return [
-            'book_id' => fake()->numberBetween(1, 6),
+            'book_id' => fake()->numberBetween(1, 10),
             'condition' => array_rand(array_flip([
                 'ottima',
                 'buona',
