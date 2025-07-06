@@ -19,7 +19,7 @@ class LoanController extends Controller
             ->where('id', $copy_id)
             ->update(['available' => 0]);
 
-        return redirect('/home/books');
+        return redirect('/home/books')->with('success', 'Prenotazione effettuata!');
     }
 
     public function stopLoan(Request $request, $copy_id) {
@@ -31,7 +31,7 @@ class LoanController extends Controller
             ->where('copy_id', $copy_id)
             ->update(['returned_at' => now()]);
 
-        return redirect('/home/loans');
+        return redirect('/home/loans')->with('success', 'Libro restituito!');
     }
 
     public static function getUserOngoingLoans() {
