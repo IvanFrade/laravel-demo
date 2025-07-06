@@ -16,7 +16,13 @@ class CopyFactory extends Factory
      */
     public function definition(): array
     {
+        $id = null;
+        do {
+            $id = random_int(1000000000, 9999999999);
+        } while (\App\Models\Loan::where('id', $id)->exists());
+
         return [
+            'id' => $id,
             'book_id' => fake()->numberBetween(1, 10),
             'condition' => array_rand(array_flip([
                 'ottima',
