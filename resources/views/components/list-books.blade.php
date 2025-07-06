@@ -10,10 +10,10 @@
     <table class="min-w-full divide-y-2 divide-gray-200 table-fixed text-center">
         <thead class="ltr:text-left rtl:text-right">
             <tr class="*:font-medium *:text-gray-900 text-center">
-                <th class="px-3 py-2 whitespace-nowrap w-[20%]">Copertina</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[10%]">Copertina</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[10%]">ISBN</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[10%]">Titolo</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[10%]">Autore</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[15%]">Titolo</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[15%]">Autore</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[10%]">Editore</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[10%]">Anno</th>
                 <th class="px-3 py-2 whitespace-normal break-words w-[20%]">Descrizione</th>
@@ -24,7 +24,11 @@
         <tbody class="divide-y divide-gray-200">
             @foreach($data as $book)
             <tr class="*:text-gray-900 *:first:font-medium">
-                <td class="px-3 py-2 whitespace-nowrap"><img src="{{ $book->cover_image }}" alt="Copertina" class="w-16 h-auto"></td>  
+                <td class="px-3 py-2 whitespace-nowrap self-center">
+                    <div class="flex justify-center items-center">
+                        <img src="{{ $book->cover_image }}" alt="Copertina" class="w-16 h-auto">
+                    </div>
+                </td>  
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->isbn }}</td>              
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->title }}</td>       
                 <td class="px-3 py-2 whitespace-nowrap">{{ $book->author }}</td>
