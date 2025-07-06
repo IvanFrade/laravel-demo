@@ -2,7 +2,7 @@
 
 <div class="rounded-md border border-gray-300 p-4 shadow-sm sm:p-6 m-2 w-xl bg-white">
     <h2 class="text-center text-indigo-600 font-bold text-xl py-4">Modifica copia</h2>
-    <form action="{{ route('copies.update', $copy->id) }}" method="POST">
+    <form action="{{ route('copies.edit', $copy->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-2">

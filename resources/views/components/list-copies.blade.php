@@ -34,10 +34,9 @@
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->condition }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->available ? 'Disponibile' : 'Prenotata' }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">
-                    <form action="" method="POST" class="inline">
-                        @csrf
+                    <a href="{{ route('copies.edit', $copy->id) }}" class="inline">
                         <x-main-button>Modifica</x-main-button>
-                    </form>
+                    </a>
                 </td>
             </tr>
             @endforeach

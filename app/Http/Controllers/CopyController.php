@@ -77,4 +77,24 @@ class CopyController extends Controller
         }
         return null;
     }
+
+    public function editCopy(Request $request, $id) {
+        $copy = Copy::findOrFail($id);
+        $books = \App\Models\Book::all();
+
+        $data = $request->validate([
+            'book_id' => 'required',
+            'condition' => 'required',
+            'available' => 'required',
+            'notes' => 'nullable',
+        ]);
+
+        $copy->book_id = strip_tags($data['book_id']);
+        $copy->condition = strip_tags($data['condition']);
+        $copy->available = strip_tags($data['available']);
+        $copy->notes = strip_tags($data['notes']);
+        $copy->save();
+
+        return redirect()->route('dashboard', ['el' => 'list-copies'])->with('success', 'Copia aggiornata con successo!');
+    }
 }

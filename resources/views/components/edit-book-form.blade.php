@@ -2,7 +2,7 @@
 
 <div class="rounded-md border border-gray-300 p-4 shadow-sm sm:p-6 m-2 w-xl bg-white">
     <h2 class="text-center text-indigo-600 font-bold text-xl py-4">Modifica libro</h2>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('books.edit', $book->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <label for="isbn">

@@ -52,4 +52,34 @@ class BookController extends Controller
 
         return $books;
     }
+
+    public function editBook(Request $request, $id) {
+        $book = \App\Models\Book::findOrFail($id);
+
+        $data = $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'publisher' => 'nullable',
+            'year' => 'nullable|integer',
+            'isbn' => 'nullable',
+            'description' => 'nullable',
+            'cover_image' => 'nullable|image|max:2048',
+        ]);
+
+        $book->title = strip_tags($data['title']);
+        $book->author = strip_tags($data['author']);
+        $book->publisher = strip_tags($data['publisher'] ?? '');
+        $book->year = strip_tags($data['year'] ?? '');
+        $book->isbn = strip_tags($data['isbn'] ?? '');
+        $book->description = strip_tags($data['description'] ?? '');
+
+        if ($request->hasFile('cover_image')) {
+            $path = $request->file('cover_image')->store('public/covers');
+            $book->cover_image = str_replace('public/', 'storage/', $path);
+        }
+
+        $book->save();
+
+        return redirect()->route('dashboard', ['el' => 'list-books'])->with('success', 'Libro aggiornato con successo!');
+    }
 }

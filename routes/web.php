@@ -102,15 +102,18 @@ Route::middleware(['auth', 'can:edit'])->group(function() {
     Route::post('/dashboard/add-book', [BookController::class, 'addBook']);
     Route::post('/dashboard/add-copy', [CopyController::class, 'addCopy']);
 
+    Route::put('/dashboard/edit/book/{id}', [BookController::class, 'editBook'])->name('books.edit');
+    Route::post('/dashboard/edit/copy/{id}', [CopyController::class, 'editCopy'])->name('copies.edit');
+
     // Edit routes for books and copies
     Route::get('/dashboard/edit/book/{id}', function($id) {
         $book = \App\Models\Book::findOrFail($id);
-        return view('edit-book', compact('book'));
+        return view('edit', compact('book'));
     })->name('books.edit');
 
     Route::get('/dashboard/edit/copy/{id}', function($id) {
         $copy = \App\Models\Copy::findOrFail($id);
         $books = \App\Models\Book::all();
-        return view('edit-book', compact('copy', 'books'));
+        return view('edit', compact('copy', 'books'));
     })->name('copies.edit');
 });
