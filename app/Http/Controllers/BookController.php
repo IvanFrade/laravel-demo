@@ -74,8 +74,11 @@ class BookController extends Controller
         $book->description = strip_tags($data['description'] ?? '');
 
         if ($request->hasFile('cover_image')) {
-            $path = $request->file('cover_image')->store('public/covers');
-            $book->cover_image = str_replace('public/', 'storage/', $path);
+            $image = $request->file('cover_image');
+            $imageName = time().'_'.$image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+
+            $book->cover_image = '/img/'.$imageName;
         }
 
         $book->save();
