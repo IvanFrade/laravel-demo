@@ -22,9 +22,9 @@ class UserSeeder extends Seeder
 
         User::create([
             'id' => 2,
-            'username' => 'ivan', 
-            'email' => 'ivan@ivan.it',
-            'password' => bcrypt('ivanivan'),
+            'username' => 'test', 
+            'email' => 'test@test',
+            'password' => bcrypt('testtest'),
         ]);
     }
 }
