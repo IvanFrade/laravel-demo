@@ -44,7 +44,7 @@ class BookController extends Controller
 
         Book::create($data);
         
-        return redirect('/dashboard/add-book');
+        return redirect('/dashboard/add-book')->with('success', 'Libro aggiunto con successo!');
     }
 
     public static function getBooks() {

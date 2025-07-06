@@ -3,14 +3,6 @@
 <x-admin-header />
 
 <div class="mx-auto max-w-2xl py-8">
-    @if($errors->any())
-        <ul class="px-4 py-2 bg-red-200 rounded-md">
-            @foreach ($errors->all() as $error)
-                <li class="my-2 text-red-500">{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
-
     @if(isset($book))
         <a href="/dashboard/list-books" class="inline-block mb-6 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition">&larr; Torna alla lista</a>
 
