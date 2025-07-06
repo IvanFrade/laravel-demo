@@ -107,13 +107,12 @@ Route::middleware(['auth', 'can:edit'])->group(function() {
 
     // Edit routes for books and copies
     Route::get('/dashboard/edit/book/{id}', function($id) {
-        $book = \App\Models\Book::findOrFail($id);
+        $book = Book::findOrFail($id);
         return view('edit', compact('book'));
     })->name('books.edit');
 
     Route::get('/dashboard/edit/copy/{id}', function($id) {
-        $copy = \App\Models\Copy::findOrFail($id);
-        $books = \App\Models\Book::all();
-        return view('edit', compact('copy', 'books'));
+        $copy = Copy::findOrFail($id);
+        return view('edit', compact('copy'));
     })->name('copies.edit');
 });
