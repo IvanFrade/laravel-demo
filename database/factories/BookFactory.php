@@ -23,7 +23,7 @@ class BookFactory extends Factory
             'publisher' => fake()->word(),
             'year' => fake()->numberBetween(1800, 2025),
             'description' => fake()->text(),
-            'cover_image' => '/public/img/default.png',
+            'cover_image' => '/img/test.jpg',
             'genre_id' => fake()->numberBetween(1, 5),
         ];
     }
