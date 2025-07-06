@@ -14,11 +14,12 @@
                 <th class="px-3 py-2 whitespace-nowrap w-[7%]">ISBN</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[15%]">Titolo</th>
                 <th class="px-3 py-2 whitespace-nowrap w-[15%]">Autore</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[15%]">Editore</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[5%]">Anno</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[8%]">Condizione</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[8%]">Disponibile</th>
-                <th class="px-3 py-2 whitespace-nowrap w-[10%]"></th>
+                <th class="px-3 py-2 whitespace-nowrap w-[10%]">Editore</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[6%]">Anno</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[10%]">Condizione</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[15%]">Note</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[10%]">Disponibile</th>
+                <th class="px-3 py-2 whitespace-nowrap w-[5%]"></th>
             </tr>
         </thead>
         
@@ -32,6 +33,7 @@
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->publisher }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->year }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->condition }}</td>
+                <td class="px-3 py-2 whitespace-nowrap">{{ $copy->notes }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">{{ $copy->available ? 'Disponibile' : 'Prenotata' }}</td>
                 <td class="px-3 py-2 whitespace-nowrap">
                     <a href="{{ route('copies.edit', $copy->id) }}" class="inline">
